@@ -286,7 +286,9 @@ public class DaoCocheMySql implements DaoCoche{
 				c.setKms(rs.getDouble(5));
 				c.setP(daoPasajero.listarPasajerosCoche(rs.getInt(1)));
 				
-				listaCoches.add(c);
+				if(!listaCoches.contains(c)) {
+					listaCoches.add(c);
+				}
 				
 			}
 		} catch (SQLException e) {
@@ -331,7 +333,11 @@ public class DaoCocheMySql implements DaoCoche{
 				c.setModelo(rs.getString(4));
 				c.setKms(rs.getDouble(5));
 				
-				listaCoches.add(c);
+				if(!listaCoches.contains(c)) {
+					listaCoches.add(c);
+				}
+				
+				
 				
 			}
 		} catch (SQLException e) {

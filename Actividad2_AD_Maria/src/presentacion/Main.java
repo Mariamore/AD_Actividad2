@@ -35,7 +35,7 @@ public class Main {
 				}
 				break;
 			case 2:
-				System.out.println("Introduce el id del coche a borrar:");
+				System.out.println("Introduce el ID del coche a borrar:");
 				int id = sc.nextInt();
 				boolean borrado = gestorCoche.bajaCoche(id);
 				if(borrado)
@@ -44,13 +44,13 @@ public class Main {
 					System.out.println("El coche no se ha podido eliminar");
 				break;
 			case 3:
-				System.out.println("Introduce el id del coche a buscar");
+				System.out.println("Introduce el ID del coche a buscar");
 				id = sc.nextInt();
 				coche = gestorCoche.consultar(id);
 				if (coche !=null)
 					System.out.println(coche);
 				else 
-					System.out.println("no existe un coche con ese id");
+					System.out.println("No existe un coche con ese ID");
 				break;
 			case 4:
 				System.out.println("Introduce el id del coche a modificar:");
@@ -83,16 +83,16 @@ public class Main {
 							System.out.println("El pasajero no se ha podido dar de alta.");
 						break;
 					case 2:
-						System.out.println("Introduce le ID del pasajero a borrar:");
+						System.out.println("Introduce el ID del pasajero a borrar:");
 						id = sc.nextInt();
 						borrado = gestorPasajero.borrar(id);
 						if (borrado)
 							System.out.println("El pasajero se ha borrado de la base de datos.");
 						else
-							System.out.println("No se ha podido borrar al paasajero.");
+							System.out.println("No se ha podido borrar al pasajero.");
 						break;
 					case 3:
-						System.out.println("Introduce le ID del pasajero que quieres obtener:");
+						System.out.println("Introduce el ID del pasajero que quieres obtener:");
 						id = sc.nextInt();
 						pasajero = gestorPasajero.consultar(id);
 						if (pasajero != null)
@@ -119,13 +119,13 @@ public class Main {
 						if (añadido)
 							System.out.println("Se ha añadido el pasajero al coche.");
 						else
-							System.out.println("no se ha podido añadir el pasajero al coche.");
+							System.out.println("No se ha podido añadir el pasajero al coche.");
 						break;
 					case 6:
 						System.out.println("Los siguientes coches tienen pasajeros:");
 						listaCoches = gestorCoche.listarCochesConPasajero();
 						System.out.println(listaCoches);
-						System.out.println("Introduce el id del pasajero a eliminar del coche:");
+						System.out.println("Introduce el ID del pasajero a eliminar del coche:");
 						id = sc.nextInt();
 						borrado = gestorPasajero.eliminarPasajeroCoche(id);
 						if(borrado)
@@ -134,11 +134,11 @@ public class Main {
 							System.out.println("No se ha podido eliminar el pasajero del coche");
 						break;
 					case 7:
-						System.out.println("Introduce el id del coche cuyos pasajeros quiere ver:");
+						System.out.println("Introduce el ID del coche cuyos pasajeros quiere ver:");
 						id = sc.nextInt();
 						listaPasajeros = gestorPasajero.listarPasajerosCoche(id);
 						if(listaPasajeros.isEmpty())
-							System.out.println("El coche con id " + id + " no tiene asignados pasajeros.");	
+							System.out.println("El coche con ID " + id + " no tiene asignados pasajeros o no está almacenado en la base de datos.");	
 						else
 							System.out.println(listaPasajeros);
 						break;
@@ -233,10 +233,11 @@ public class Main {
 		Coche c = new Coche();
 		System.out.println("Introduce el año de fabricación:");
 		int año = sc.nextInt();
+		sc.nextLine();
 		System.out.println("Introduce la marca:");
-		String marca = sc.nextLine() +sc.next();;
+		String marca = sc.nextLine() ;
 		System.out.println("Introduce el modelo:");
-		String modelo = sc.nextLine() +sc.next();
+		String modelo = sc.nextLine() ;
 		System.out.println("Introduce los kilómetros:");
 		double kms = sc.nextDouble();
 		//No se pide el id porque lo genera automáticamente la base de datos

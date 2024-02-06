@@ -32,8 +32,13 @@ public class Coche {
 	
 	@Override
 	public String toString() {
-		return "Coche [id=" + id + ", añoFabricacion=" + añoFabricacion + ", marca=" + marca + ", modelo=" + modelo
-				+ ", kms=" + kms + ", p=" + listaPasajeros + "]\n";
+		if(this.listaPasajeros != null) {
+			return "Coche [id=" + id + ", añoFabricacion=" + añoFabricacion + ", marca=" + marca + ", modelo=" + modelo
+				+ ", kms=" + kms + ", listaPasajeros=" + listaPasajeros + "]\n";
+		} else {
+			return "Coche [id=" + id + ", añoFabricacion=" + añoFabricacion + ", marca=" + marca + ", modelo=" + modelo
+					+ ", kms=" + kms +  "]\n";
+		}
 	}
 	
 

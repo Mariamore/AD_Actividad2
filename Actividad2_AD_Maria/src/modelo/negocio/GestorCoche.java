@@ -16,7 +16,7 @@ private DaoCoche daoCoche = new DaoCocheMySql();
 	 * @return false en caso de que la marca y/o el modelo del coche tengan valor null, true, en caso contrario
 	 */
 	public boolean validarCoche(Coche coche) {
-		if(coche.getMarca() == null || coche.getModelo() == null) {
+		if(coche.getMarca() == "" || coche.getModelo() == "") {
 			return false;
 		}
 		
