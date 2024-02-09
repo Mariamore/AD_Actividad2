@@ -1,0 +1,22 @@
+CREATE TABLE coches (
+    ID int AUTO_INCREMENT NOT NULL,
+    AÑO_FABRICACION int,
+    MARCA varchar(20) NOT NULL,
+    MODELO varchar(25) NOT NULL,
+    KMS double,
+    PRIMARY KEY (ID)
+    );
+
+CREATE TABLE pasajeros (
+    ID int AUTO_INCREMENT NOT NULL,
+    EDAD int,
+    NOMBRE varchar(30),
+    PESO double,
+    ID_COCHE int,
+    PRIMARY KEY (ID)
+    );
+
+ALTER TABLE pasajeros
+	ADD KEY (ID_COCHE);
+ALTER TABLE pasajeros
+	  ADD CONSTRAINT pasajeros_ibfk FOREIGN KEY (ID_COCHE) REFERENCES coches (ID) ON DELETE NO ACTION ON UPDATE NO ACTION;
