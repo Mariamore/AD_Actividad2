@@ -1,0 +1,43 @@
+-- Crear la base de datos gestionConcesionario
+CREATE DATABASE gestionConcesionario; USE gestionConcesionario;
+-- Crear la tabla de pasajeros
+CREATE TABLE Pasajeros (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(255),
+    edad INT,
+    peso DOUBLE
+);
+
+-- Crear la tabla de coches con ID autoincrementable
+CREATE TABLE Coches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR(255),
+    modelo VARCHAR(255),
+    añofabricacion INT,
+    km DOUBLE
+);
+
+
+CREATE TABLE CochesPasajeros (
+    id_pasajero INT,
+    id_coche INT,
+    FOREIGN KEY (id_pasajero) REFERENCES pasajeros(id),
+    FOREIGN KEY (id_coche) REFERENCES coches(id)
+);
+
+-- Insertar coches
+INSERT INTO coches (marca, modelo, añofabricacion, km) VALUES
+('Toyota', 'Corolla', 2020, 50000),
+('Ford', 'Focus', 2018, 70000),
+('Honda', 'Civic', 2019, 60000);
+
+INSERT INTO pasajeros (id, nombre, edad, peso) VALUES 
+(1, 'Juan', 30, 70.5), 
+(2, 'María', 25, 65.2), 
+(3, 'Pedro', 40, 80.0);
+
+-- Asociar pasajeros a coches
+INSERT INTO cochespasajeros (id_coche, id_pasajero) VALUES
+(1, 1), -- Juan en Toyota Corolla
+(1, 2), -- María en Toyota Corolla
+(2, 3); -- Pedro en Ford Focus
