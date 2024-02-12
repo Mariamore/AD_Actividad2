@@ -47,6 +47,7 @@ public class MainCoches {
 					System.out.println("El coche ha sido dado de baja correctamente de la base de datos.");
 				}else {
 					System.out.println("El coche no se ha podido eliminar de la base de datos.");
+					System.out.println("Recuerda que no puedes eliminar un coche que tenga pasajeros asociados");
 				}
 				break;
 			case 3:
