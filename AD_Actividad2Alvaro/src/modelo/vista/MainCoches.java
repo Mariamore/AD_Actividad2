@@ -136,11 +136,26 @@ public class MainCoches {
 							for(int i=0;i<listaPasajeros.size();i++) {
 								System.out.println(listaPasajeros.get(i));
 							}
+							if(listaPasajeros.isEmpty()) {
+								System.out.println("No existen pasajeros en la base de datos.");
+							}
 						}else {
 							System.out.println("No se han podido listar los pasajeros de la base de datos.");
 						}
 						break;
 					case 5:
+						System.out.println("Estos son los coches disponibles: ");
+						listaCoches = gestorCoches.cochesDisponibles();
+						if(listaCoches!=null) {
+							for(int i=0;i<listaCoches.size();i++) {
+								System.out.println(listaCoches.get(i));
+							}
+							if(listaCoches.isEmpty()) {
+								System.out.println("No existen coches disponibles en la base de datos.");
+							}
+						}else {
+							System.out.println("No se han podido listar los coches de la base de datos.");
+						}
 						System.out.println("Introduzca el número de ID del pasajero que quiere añadir a un coche:");
 						idPasajero = sc.nextInt();
 						System.out.println("Introduzca el número de ID del coche al que quiere añadir el pasajero:");
@@ -152,6 +167,18 @@ public class MainCoches {
 						}
 						break;
 					case 6:
+						System.out.println("Obteniendo el listado de coches con pasajeros...");
+						listaCoches = gestorCoches.listarCochesConPasajero();
+						if(listaCoches!=null) {
+							for(int i=0;i<listaCoches.size();i++) {
+								System.out.println(listaCoches.get(i));
+							}
+							if(listaCoches.isEmpty()) {
+								System.out.println("No existen coches con pasajeros en la base de datos.");
+							}
+						}else {
+							System.out.println("No se han podido listar los coches de la base de datos.");
+						}
 						System.out.println("Indroduzca el número de ID del pasajero que quiera eliminar de un coche:");
 						idPasajero = sc.nextInt();
 						if(gestorPasajeros.pasajeroEliminarCoche(idPasajero)) {
@@ -167,6 +194,9 @@ public class MainCoches {
 						if(listaPasajeros!=null) {
 							for(int i=0;i<listaPasajeros.size();i++) {
 								System.out.println(listaPasajeros.get(i));
+							}
+							if(listaPasajeros.isEmpty()) {
+								System.out.println("No existen pasajeros en el coche seleccionado.");
 							}
 						}else {
 							System.out.println("No se han podido listar los pasajeros de la base de datos.");

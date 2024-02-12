@@ -174,5 +174,92 @@ public class DaoCocheMySql implements DaoCoche {
 		}
 		return listaCoches;
 	}
+	
+	/**
+	 * Método que permite listar los coches que se encuentren guardados en la base de datos
+	 * que tengan asignado algún pasajero
+	 * @return el arraylist con los coches con pasajeros asignados, guardados en la base de datos, 
+	 * el arraylist vacío,en caso de que no existan coches almacenados en la base de datos que tengan asignados
+	 * pasajeros, null en caso de error
+	 */
+	@Override
+	public List<Coche> cochesConPasajeros() {
+		if(!abrirConexion()) {
+			return null;
+		}
+		DaoPasajeroMySql daoPasajero = new DaoPasajeroMySql();
+		List<Coche> listaCoches = new ArrayList<>();
+		String sql = "select COCHES.ID, COCHES.MARCA, COCHES.MODELO, COCHES.YEAR, COCHES.KM "
+				+ "from coches "
+				+ "inner join pasajeros on COCHES.ID = PASAJEROS.COCHE_ID";
+		
+		try {
+			PreparedStatement ps = conexion.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Coche coche = new Coche();
+				coche.setId(rs.getInt(1));
+				coche.setMarca(rs.getString(2));
+				coche.setModelo(rs.getString(3));
+				coche.setYear(rs.getInt(4));
+				coche.setKm(rs.getInt(5));
+				coche.setListaPasajeros(daoPasajero.listarPasajerosDeCoche(rs.getInt(1)));
+				if(!listaCoches.contains(coche)) {
+					listaCoches.add(coche);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexion();
+		}
+		return listaCoches;
+	}
+
+	/**
+	 * Método que permite listar los coches que se encuentren guardados en la base de datos que tengan plazas 
+	 * disponibles 
+	 * @return el arraylist con los coches con plazas libres, guardados en la base de datos, 
+	 * el arraylist vacío,en caso de que no existan coches almacenados en la base de datos que tengan plazas libres,
+	 * null en caso de error
+	 */
+	@Override
+	public List<Coche> cochesDisponibles() {
+		if(!abrirConexion()) {
+			return null;
+		}
+		List<Coche> listaCoches = new ArrayList<>();
+		//Hemos determinado que estarán libres los coches que tengan asignados 4 o menos pasajeros
+		String query = "select COCHES.ID, COCHES.MARCA, COCHES.MODELO, COCHES.YEAR, COCHES.KM "
+				+ "from COCHES "
+				+ "left join PASAJEROS on COCHES.ID = PASAJEROS.COCHE_ID "
+				+ "group by COCHES.ID "
+				+ "having count(PASAJEROS.COCHE_ID) < 5 OR COUNT(PASAJEROS.COCHE_ID) is null";
+		
+		try {
+			PreparedStatement ps = conexion.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Coche coche = new Coche();
+				coche.setId(rs.getInt(1));
+				coche.setMarca(rs.getString(2));
+				coche.setModelo(rs.getString(3));
+				coche.setYear(rs.getInt(4));
+				coche.setKm(rs.getInt(5));
+				
+				if(!listaCoches.contains(coche)) {
+					listaCoches.add(coche);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			cerrarConexion();
+		}
+		return listaCoches;
+	}
 
 }

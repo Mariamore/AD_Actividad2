@@ -1,5 +1,8 @@
 package modelo.entidad;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coche {
 	
 	private int id;
@@ -7,6 +10,7 @@ public class Coche {
 	private String modelo;
 	private int year;
 	private int km;
+	private ArrayList<Pasajero> listaPasajeros;
 	
 	
 	public Coche() {
@@ -62,9 +66,22 @@ public class Coche {
 		this.km = km;
 	}
 
+	public ArrayList<Pasajero> getListaPasajeros() {
+		return listaPasajeros;
+	}
+
+	public void setListaPasajeros(List<Pasajero> list) {
+		this.listaPasajeros = (ArrayList<Pasajero>) list;
+	}
+
 	@Override
 	public String toString() {
-		return "Coche [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", year=" + year + ", km=" + km + "]";
+		if(this.listaPasajeros != null) {
+			return "Coche [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", year=" + year
+					+ ", km=" + km + "Pasajeros: " + listaPasajeros + "]";
+		}else {
+			return "Coche [id=" + id + ", marca=" + marca + ", modelo=" + modelo + ", year=" + year + ", km=" + km + "]";
+		}
 	}
 	
 	

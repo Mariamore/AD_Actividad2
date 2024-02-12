@@ -70,5 +70,30 @@ public class GestorCoches {
 		List<Coche> listaCoches = daoCoche.listarCoches();
 		return listaCoches;
 	}
+	
+	/**
+	 * Método que permite listar los coches que se encuentren guardados en la base de datos
+	 * que tengan asignado algún pasajero
+	 * @return el arraylist con los coches con pasajeros asignados, guardados en la base de datos, 
+	 * el arraylist vacío,en caso de que no existan coches almacenados en la base de datos que tengan asignados
+	 * pasajeros, null en caso de error.
+	 */
+	public List<Coche> listarCochesConPasajero(){
+		List<Coche> listaCoches = daoCoche.cochesConPasajeros();
+		return listaCoches;
+	}
+	
+	
+	/**
+	 * Método que permite listar los coches que se encuentren guardados en la base de datos que tengan plazas 
+	 * disponibles 
+	 * @return el arraylist con los coches con plazas libres, guardados en la base de datos, 
+	 * el arraylist vacío,en caso de que no existan coches almacenados en la base de datos que tengan plazas libres,
+	 * null en caso de error
+	 */
+	public List<Coche> cochesDisponibles(){
+		List<Coche> listaCoches = daoCoche.cochesDisponibles();
+		return listaCoches;
+	}
 
 }
