@@ -1,0 +1,21 @@
+Para crear las tablas en nuestra base de datos, ejecutaremos 
+las siguientes sentencias:
+
+USE bbdd;
+CREATE TABLE coches (
+    ID INT PRIMARY KEY AUTO_INCREMENT,
+    MARCA VARCHAR(255),
+    MODELO VARCHAR(255),
+    `YEAR` INT,
+    KM INT
+);
+
+USE bbdd;
+CREATE TABLE pasajeros (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    NOMBRE VARCHAR(100),
+    EDAD INT,
+    PESO DECIMAL(5,2),
+    COCHE_ID INT,
+    FOREIGN KEY (COCHE_ID) REFERENCES coches(ID)
+);
